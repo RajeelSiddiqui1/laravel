@@ -28,4 +28,9 @@ class UserController extends Controller
         $limiteddata = array_slice($data, 0, 9);
         return view('cards', ['data' => $limiteddata]);
     }
+
+    function addUser(Request $request){
+        $request->session()->flash('message','user add succssfully');
+        return redirect('user');
+    }
 }
