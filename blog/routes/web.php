@@ -28,3 +28,12 @@ Route::view('user', 'user');
 Route::post('add', [UserController::class, 'addUser']);
 
 Route::view('about', 'about');
+
+
+Route::view('add', 'add-students');
+Route::post('add',[StudentController::class,'addStudents']);
+Route::get('students',[StudentController::class,'studentList']);
+Route::get('delete/{id}',[StudentController::class,'deleteStudent']);
+Route::get('edit-student/{id}',[StudentController::class,'editStudent']);
+Route::put('update-student/{id}',[StudentController::class,'updateStudent']);
+Route::get('search', [StudentController::class, 'searchStudents']);
