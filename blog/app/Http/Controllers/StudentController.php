@@ -24,9 +24,9 @@ class StudentController extends Controller
         }
     }
 
-   function studentList()
+    function studentList()
     {
-        $students = Student::paginate(2);
+        $students = Student::paginate(4);
         return view('students', ['students' => $students]);
     }
 
@@ -63,17 +63,29 @@ class StudentController extends Controller
         }
     }
 
-    public function searchStudents(Request $request)
-{
-    $search = $request->search;
+    function searchStudents(Request $request)
+    {
+        $search = $request->search;
 
-    $studentData = Student::where('name', 'like', "%{$search}%")->paginate(2)
-    ->withQueryString();
+        $studentData = Student::where('name', 'like', "%{$search}%")->paginate(4)
+            ->withQueryString();
 
-    return view('students', [
-        'students' => $studentData,
-        'search' => $search
-    ]);
-}
+        return view('students', [
+            'students' => $studentData,
+            'search' => $search
+        ]);
+    }
 
+
+    function deleteMultiple(Request $request)
+    {
+        $result = Student::destroy($request->ids);
+        if (!$result) {
+            $request->session()->flash('message', 'Operation failed');
+            return redirect('students');
+        } else {
+            $request->session()->flash('message', 'Multiple data delete successfully');
+            return redirect('students');
+        }
+    }
 }

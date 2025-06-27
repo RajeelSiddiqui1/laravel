@@ -26,10 +26,14 @@
         </div>
 
     </div>
-    <div class="row mt-3">
+    <div class="row my-3">
+        <form action="delete-multiple" method="post">
+            @csrf
+            <button class="btn btn-secondary my-2">Delete Multiple Recordes</button>
         <table class="table table-bordered ">
             <thead class="table-danger">
                 <tr>
+                    <th scope="col">Section</th>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
@@ -42,6 +46,7 @@
             <tbody>
                 @foreach($students as $std)
                 <tr>
+                    <td><input type="checkbox" name="ids[]" value="{{ $std->id }}"></td>
                     <td>{{ $loop->iteration + ($students->currentPage() - 1) * $students->perPage() }}</td>
                     <td>{{ $std->name }}</td>
                     <td>{{ $std->email }}</td>
@@ -57,6 +62,7 @@
             </tbody>
 
         </table>
+        </form>
 
         {{ $students->links('pagination::bootstrap-5') }}
     </div>

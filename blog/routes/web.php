@@ -37,3 +37,4 @@ Route::get('delete/{id}',[StudentController::class,'deleteStudent']);
 Route::get('edit-student/{id}',[StudentController::class,'editStudent']);
 Route::put('update-student/{id}',[StudentController::class,'updateStudent']);
 Route::get('search', [StudentController::class, 'searchStudents']);
+Route::post('delete-multiple',[StudentController::class,'deleteMultiple']);
