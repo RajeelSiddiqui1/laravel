@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\SellerController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Session;
 
 
@@ -38,3 +40,6 @@ Route::get('edit-student/{id}',[StudentController::class,'editStudent']);
 Route::put('update-student/{id}',[StudentController::class,'updateStudent']);
 Route::get('search', [StudentController::class, 'searchStudents']);
 Route::post('delete-multiple',[StudentController::class,'deleteMultiple']);
+Route::get('list',[SellerController::class,'list']);
+Route::get('manyToOne',[SellerController::class,'manyToOne']);
+Route::get('send-mail',[MailController::class,'sendMail']);
